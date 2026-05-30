@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Saif Learn - Online Education Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #4f46e5;
+    --secondary: #7c3aed;
+    --accent: #06b6d4;
+    --bg: #f8fafc;
+    --dark: #0f172a;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --muted: #64748b;
+    --text: #1e293b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* NAV */
+nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 0 80px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+.nav-links { display: flex; gap: 35px; align-items: center; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: var(--primary); }
+.nav-btns { display: flex; gap: 10px; }
+.btn-outline {
+    padding: 9px 20px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-primary {
+    padding: 9px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-primary:hover { background: var(--secondary); transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+    padding: 80px;
+    background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 50%, #f0fdff 100%);
+    display: flex;
+    align-items: center;
+    min-height: 85vh;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+}
+.hero-left { flex: 1; position: relative; z-index: 1; animation: fadeInUp 1s ease; }
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(79,70,229,0.08);
+    border: 1px solid rgba(79,70,229,0.15);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+.hero h1 {
+    font-size: 62px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+.hero h1 span {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 18px; color: var(--muted); line-height: 1.8; margin-bottom: 35px; max-width: 520px; }
+.hero-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+.hero-search input {
+    flex: 1;
+    padding: 14px 20px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    transition: 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.hero-search input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
+.hero-search input::placeholder { color: #94a3b8; }
+.hero-search button {
+    padding: 14px 24px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+.hero-search button:hover { background: var(--secondary); }
+.hero-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-tags span { font-size: 13px; color: var(--muted); }
+.hero-tag-item {
+    padding: 5px 12px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.hero-tag-item:hover { border-color: var(--primary); color: var(--primary); }
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+.hero-visual {
+    width: 420px;
+    height: 420px;
+    background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(124,58,237,0.1));
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+    animation: float 4s ease-in-out infinite;
+    border: 1px solid rgba(79,70,229,0.15);
+    box-shadow: 0 20px 60px rgba(79,70,229,0.1);
+}
+
+/* STATS */
+.stats {
+    padding: 50px 80px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+.stat-item h3 {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+.stat-item p { font-size: 14px; color: var(--muted); font-weight: 500; }
+
+/* CATEGORIES */
+.categories {
+    padding: 80px;
+    background: var(--bg);
+}
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; color: var(--dark); }
+.section-header h2 span { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.section-header p { font-size: 16px; color: var(--muted); }
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.category-card {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+    cursor: pointer;
+    text-align: left;
+}
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(79,70,229,0.1);
+}
+.category-icon { font-size: 35px; margin-bottom: 15px; display: block; }
+.category-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; color: var(--dark); }
+.category-card p { font-size: 13px; color: var(--muted); }
+
+/* COURSES */
+.courses {
+    padding: 80px;
+    background: white;
+}
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 50px auto 0;
+}
+.course-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border-color: var(--primary);
+}
+.course-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}
+.course-card:nth-child(1) .course-img { background: linear-gradient(135deg, #f0f4ff, #e0e7ff); }
+.course-card:nth-child(2) .course-img { background: linear-gradient(135deg, #fdf4ff, #ede9fe); }
+.course-card:nth-child(3) .course-img { background: linear-gradient(135deg, #f0fdff, #cffafe); }
+.course-card:nth-child(4) .course-img { background: linear-gradient(135deg, #fff7ed, #fed7aa); }
+.course-card:nth-child(5) .course-img { background: linear-gradient(135deg, #f0fdf4, #bbf7d0); }
+.course-card:nth-child(6) .course-img { background: linear-gradient(135deg, #fff1f2, #fecdd3); }
+.course-info { padding: 20px; }
+.course-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(79,70,229,0.08);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.course-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+.course-info .instructor { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.course-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.course-rating { font-size: 13px; color: #f59e0b; font-weight: 600; }
+.course-students { font-size: 12px; color: var(--muted); }
+.course-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid var(--border); }
+.course-price { font-size: 20px; font-weight: 800; color: var(--primary); }
+.course-price .original { font-size: 13px; color: var(--muted); text-decoration: line-through; margin-left: 8px; font-weight: 400; }
+.enroll-btn {
+    padding: 8px 18px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.enroll-btn:hover { background: var(--secondary); }
+
+/* INSTRUCTORS */
+.instructors {
+    padding: 80px;
+    background: var(--bg);
+    text-align: center;
+}
+.instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 50px auto 0;
+}
+.instructor-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.instructor-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(79,70,229,0.1); }
+.instructor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    margin: 0 auto 15px;
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(79,70,229,0.2);
+}
+.instructor-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; color: var(--dark); }
+.instructor-card .role { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+.instructor-card .rating { font-size: 13px; color: #f59e0b; font-weight: 600; }
+
+/* TESTIMONIALS */
+.testimonials {
+    padding: 80px;
+    background: white;
+    text-align: center;
+}
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 50px auto 0;
+}
+.testimonial-card {
+    background: var(--bg);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    text-align: left;
+    transition: 0.3s;
+}
+.testimonial-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.testimonial-stars { font-size: 16px; margin-bottom: 15px; }
+.testimonial-card p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+.author-info h4 { font-size: 14px; font-weight: 700; color: var(--dark); }
+.author-info p { font-size: 12px; color: var(--muted); }
+
+/* CTA */
+.cta {
+    padding: 100px 80px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    text-align: center;
+    color: white;
+}
+.cta h2 { font-size: 50px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; }
+.cta p { font-size: 18px; opacity: 0.85; margin-bottom: 40px; }
+.cta-form { display: flex; gap: 12px; max-width: 450px; margin: 0 auto; }
+.cta-form input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+.cta-form input::placeholder { color: rgba(255,255,255,0.6); }
+.cta-form input:focus { background: rgba(255,255,255,0.2); }
+.cta-form button {
+    padding: 14px 25px;
+    background: white;
+    color: var(--primary);
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+.cta-form button:hover { background: #f1f5f9; transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+    background: var(--dark);
+    padding: 60px 80px 30px;
+    color: white;
+}
+.footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 40px;
+}
+.footer-brand p { font-size: 14px; color: #64748b; line-height: 1.8; margin-top: 15px; }
+.footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #475569; margin-bottom: 20px; }
+.footer-col a { display: block; color: #64748b; text-decoration: none; font-size: 14px; margin-bottom: 12px; transition: 0.3s; }
+.footer-col a:hover { color: white; }
+.footer-bottom { border-top: 1px solid #1e293b; padding-top: 25px; display: flex; justify-content: space-between; }
+.footer-bottom p { font-size: 13px; color: #475569; }
+.footer-bottom span { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">📚 SaifLearn</div>
+    <div class="nav-links">
+        <a href="#categories">Courses</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#cta">Join Free</a>
+    </div>
+    <div class="nav-btns">
+        <button class="btn-outline" onclick="alert('Login!')">Log In</button>
+        <button class="btn-primary" onclick="alert('Sign Up Free!')">Sign Up Free</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-badge">🎓 #1 Online Learning Platform</div>
+        <h1>Learn New Skills<br>Advance Your <span>Career</span></h1>
+        <p>Join millions of learners worldwide. Access 10,000+ courses from top instructors and learn at your own pace.</p>
+        <div class="hero-search">
+            <input type="text" placeholder="What do you want to learn?">
+            <button onclick="alert('Searching courses!')">Search 🔍</button>
+        </div>
+        <div class="hero-tags">
+            <span>Popular:</span>
+            <span class="hero-tag-item">Web Design</span>
+            <span class="hero-tag-item">Python</span>
+            <span class="hero-tag-item">Excel</span>
+            <span class="hero-tag-item">Marketing</span>
+            <span class="hero-tag-item">UI/UX</span>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="hero-visual">🎓</div>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+    <div class="stats-grid">
+        <div class="stat-item"><h3>10K+</h3><p>Online Courses</p></div>
+        <div class="stat-item"><h3>500+</h3><p>Expert Instructors</p></div>
+        <div class="stat-item"><h3>2M+</h3><p>Happy Students</p></div>
+        <div class="stat-item"><h3>150+</h3><p>Countries</p></div>
+    </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+    <div class="section-header">
+        <h2>Browse <span>Categories</span></h2>
+        <p>Explore our wide range of course categories</p>
+    </div>
+    <div class="categories-grid">
+        <div class="category-card">
+            <span class="category-icon">💻</span>
+            <h3>Web Development</h3>
+            <p>1,200+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">🎨</span>
+            <h3>UI/UX Design</h3>
+            <p>800+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">📊</span>
+            <h3>Data Science</h3>
+            <p>950+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">📱</span>
+            <h3>Mobile Apps</h3>
+            <p>600+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">🤖</span>
+            <h3>AI & Machine Learning</h3>
+            <p>450+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">📈</span>
+            <h3>Digital Marketing</h3>
+            <p>700+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">💰</span>
+            <h3>Business & Finance</h3>
+            <p>850+ Courses</p>
+        </div>
+        <div class="category-card">
+            <span class="category-icon">🎵</span>
+            <h3>Music & Arts</h3>
+            <p>400+ Courses</p>
+        </div>
+    </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses">
+    <div class="section-header">
+        <h2>Featured <span>Courses</span></h2>
+        <p>Hand-picked courses by our expert team</p>
+    </div>
+    <div class="courses-grid">
+        <div class="course-card">
+            <div class="course-img">🌐</div>
+            <div class="course-info">
+                <span class="course-tag">Web Dev</span>
+                <h3>Complete Web Development Bootcamp 2026</h3>
+                <p class="instructor">👨‍💻 By Saif Islam</p>
+                <div class="course-meta">
+                    <span class="course-rating">⭐ 4.9 (12,400)</span>
+                    <span class="course-students">45K students</span>
+                </div>
+                <div class="course-footer">
+                    <div><span class="course-price">$49</span><span class="original">$199</span></div>
+                    <button class="enroll-btn" onclick="alert('Enrolled!')">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img">🎨</div>
+            <div class="course-info">
+                <span class="course-tag">Design</span>
+                <h3>UI/UX Design Masterclass: Zero to Hero</h3>
+                <p class="instructor">👩‍🎨 By Sara Ahmed</p>
+                <div class="course-meta">
+                    <span class="course-rating">⭐ 4.8 (8,200)</span>
+                    <span class="course-students">32K students</span>
+                </div>
+                <div class="course-footer">
+                    <div><span class="course-price">$39</span><span class="original">$149</span></div>
+                    <button class="enroll-btn" onclick="alert('Enrolled!')">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img">🐍</div>
+            <div class="course-info">
+                <span class="course-tag">Data Science</span>
+                <h3>Python for Data Science & Machine Learning</h3>
+                <p class="instructor">👨‍💻 By Omar Hassan</p>
+                <div class="course-meta">
+                    <span class="course-rating">⭐ 4.9 (15,600)</span>
+                    <span class="course-students">68K students</span>
+                </div>
+                <div class="course-footer">
+                    <div><span class="course-price">$59</span><span class="original">$249</span></div>
+                    <button class="enroll-btn" onclick="alert('Enrolled!')">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img">📱</div>
+            <div class="course-info">
+                <span class="course-tag">Mobile</span>
+                <h3>React Native: Build iOS & Android Apps</h3>
+                <p class="instructor">👨‍💻 By Ahmed Ali</p>
+                <div class="course-meta">
+                    <span class="course-rating">⭐ 4.7 (6,800)</span>
+                    <span class="course-students">28K students</span>
+                </div>
+                <div class="course-footer">
+                    <div><span class="course-price">$45</span><span class="original">$179</span></div>
+                    <button class="enroll-btn" onclick="alert('Enrolled!')">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img">📈</div>
+            <div class="course-info">
+                <span class="course-tag">Marketing</span>
+                <h3>Digital Marketing Complete Guide 2026</h3>
+                <p class="instructor">👩‍💼 By Nora Hassan</p>
+                <div class="course-meta">
+                    <span class="course-rating">⭐ 4.8 (9,400)</span>
+                    <span class="course-students">41K students</span>
+                </div>
+                <div class="course-footer">
+                    <div><span class="course-price">$35</span><span class="original">$139</span></div>
+                    <button class="enroll-btn" onclick="alert('Enrolled!')">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img">🤖</div>
+            <div class="course-info">
+                <span class="course-tag">AI</span>
+                <h3>ChatGPT & AI Tools for Business 2026</h3>
+                <p class="instructor">👨‍💻 By Saif Islam</p>
+                <div class="course-meta">
+                    <span class="course-rating">⭐ 4.9 (18,200)</span>
+                    <span class="course-students">82K students</span>
+                </div>
+                <div class="course-footer">
+                    <div><span class="course-price">$29</span><span class="original">$119</span></div>
+                    <button class="enroll-btn" onclick="alert('Enrolled!')">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INSTRUCTORS -->
+<section class="instructors" id="instructors">
+    <div class="section-header">
+        <h2>Top <span>Instructors</span></h2>
+        <p>Learn from the world's best experts</p>
+    </div>
+    <div class="instructors-grid">
+        <div class="instructor-card">
+            <div class="instructor-avatar">👨‍💻</div>
+            <h3>Saif Islam</h3>
+            <p class="role">Web Developer</p>
+            <p class="rating">⭐ 4.9 • 45K students</p>
+        </div>
+        <div class="instructor-card">
+            <div class="instructor-avatar">👩‍🎨</div>
+            <h3>Sara Ahmed</h3>
+            <p class="role">UI/UX Designer</p>
+            <p class="rating">⭐ 4.8 • 32K students</p>
+        </div>
+        <div class="instructor-card">
+            <div class="instructor-avatar">👨‍💻</div>
+            <h3>Omar Hassan</h3>
+            <p class="role">Data Scientist</p>
+            <p class="rating">⭐ 4.9 • 68K students</p>
+        </div>
+        <div class="instructor-card">
+            <div class="instructor-avatar">👩‍💼</div>
+            <h3>Nora Hassan</h3>
+            <p class="role">Digital Marketer</p>
+            <p class="rating">⭐ 4.8 • 41K students</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="section-header">
+        <h2>Student <span>Reviews</span></h2>
+        <p>What our students say about us</p>
+    </div>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p>"SaifLearn completely changed my career. I learned web development in 3 months and got my first job paying $3000/month!"</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">A</div>
+                <div class="author-info"><h4>Ahmed Ali</h4><p>Web Developer</p></div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p>"The best online learning platform I have ever used. The courses are detailed, practical and taught by real experts!"</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">S</div>
+                <div class="author-info"><h4>Sara Hassan</h4><p>UI/UX Designer</p></div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p>"I went from zero to landing a data science job in 6 months thanks to SaifLearn. Highly recommend to everyone!"</p>
+            <div class="testimonial-author">
+                <div class="author-avatar">O</div>
+                <div class="author-info"><h4>Omar Khan</h4><p>Data Scientist</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+    <h2>Start Learning Today!</h2>
+    <p>Join 2 million+ students and advance your career</p>
+    <div class="cta-form">
+        <input type="email" placeholder="Enter your email">
+        <button onclick="alert('Welcome to SaifLearn! Free account created!')">Join Free 🎓</button>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="logo">📚 SaifLearn</div>
+            <p>The world's leading online learning platform. Learn anything, anywhere, anytime.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Learn</h4>
+            <a href="#">All Courses</a>
+            <a href="#">Categories</a>
+            <a href="#">Instructors</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Refunds</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <span>SaifLearn</span>. All Rights Reserved.</p>
+        <p>Built by <span>Saif Islam</span></p>
+    </div>
+</footer>
+
+</body>
+</html>
